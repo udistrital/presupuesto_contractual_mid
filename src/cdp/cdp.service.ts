@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { XmlToJsonService } from '../services/xml-to-json.service';
 import { CdpDto } from './dto/cdp.dto';
 
 interface responseData {
@@ -11,7 +10,6 @@ interface responseData {
 
 @Injectable()
 export class CdpService {
-  constructor(private readonly xmlToJsonService: XmlToJsonService) {}
 
   async findOne(
     vigencia: string,

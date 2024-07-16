@@ -12,10 +12,9 @@ API MID intermediaria entre el cliente ARGOv2 y el API de Sicapital.
 
 ### Variables de Entorno
 ```shell
-PRESUPUESTO_CONTACTUAL_MID_HTTP_PORT: [Puerto de ejecución API]
-
+PORT: [Puerto de ejecución API]
 ```
-**NOTA:** Las variables se asignan en una archivo privado .env.
+Nota: En caso de no asignar el puerto en las variables de entorno, se asignará el puerto por defecto.
 
 ### Ejecución del Proyecto
 ```shell
@@ -33,7 +32,12 @@ pnpm start:dev (Modo Desarrollo)
 ```
 Nota: Para otras plataformas de PNPM consultar la [documentación oficial](https://pnpm.io/installation)
 
-Nota: En caso de no asignar el puerto en las variables de entorno, se asignará el puerto por defecto.
+### Swagger
+```shell
+http://localhost:3000/api
+```
+
+
 ### Ejecución Dockerfile
 ```shell
 # TODO
