@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { CdpDto } from './dto/cdp.dto';
+import { ConfigService } from '@nestjs/config';
 
 interface responseData {
   informacion_cdp: {
@@ -10,13 +11,17 @@ interface responseData {
 
 @Injectable()
 export class CdpService {
+  constructor(private configService: ConfigService) {}
 
   async findOne(
     vigencia: string,
     numeroDisponibilidad: string,
     unidadEjecutora: string,
   ) {
-    const url = `http://busservicios.intranetoas.udistrital.edu.co:8282/wso2eiserver/services/financiera_produccion/informacion_cdp/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
+    const endpoint: string = this.configService.get<string>(
+      'ENDP_INFO_CDP_FINANCIERA',
+    );
+    const url = `${endpoint}/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
 
     const responseRaw = await axios.get(url);
     const response: responseData = responseRaw.data;
