@@ -16,16 +16,16 @@ describe('AppService', () => {
         expect(appService).toBeDefined();
     });
 
-    describe('getHello', () => {
+    describe('healthCheck', () => {
         it('Debe retornar el objeto correcto', () => {
-            const result1 = appService.getHello();
-            expect(result1).toEqual({ status: 'ok', checkCount: 0 });
+            const result1 = appService.healthCheck();
+            expect(result1).toEqual({ Status: 'ok', checkCount: 0 });
 
-            const result2 = appService.getHello();
-            expect(result2).toEqual({ status: 'ok', checkCount: 1 });
+            const result2 = appService.healthCheck();
+            expect(result2).toEqual({ Status: 'ok', checkCount: 1 });
 
-            const result3 = appService.getHello();
-            expect(result3).toEqual({ status: 'ok', checkCount: 2 });
+            const result3 = appService.healthCheck();
+            expect(result3).toEqual({ Status: 'ok', checkCount: 2 });
         });
 
         it('Debe retornar el objeto error', () => {
@@ -36,8 +36,8 @@ describe('AppService', () => {
                 }
             });
 
-            const result = appService.getHello();
-            expect(result).toEqual({ status: 'error', error: 'Test error' });
+            const result = appService.healthCheck();
+            expect(result).toEqual({ Status: 'error', error: 'Test error' });
         });
     });
 });
