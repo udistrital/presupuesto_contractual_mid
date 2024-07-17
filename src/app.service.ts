@@ -5,15 +5,15 @@ export class AppService {
 
   counter: number = 0;
 
-  getHello() {
+  healthCheck() {
     try {
       return {
-        status: "ok",
+        Status: "ok",
         checkCount: this.counter++
       };
     } catch (error) {
         return {
-            status: "error",
+            Status: "error",
             error: error.message
         };
     }
