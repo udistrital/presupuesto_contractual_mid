@@ -13,6 +13,7 @@ API MID intermediaria entre el cliente ARGOv2 y el API de Sicapital.
 ### Variables de Entorno
 ```shell
 PORT: [Puerto de ejecución API]
+ENDP_INFO_CDP_FINANCIERA: [Endpoint de información de CDP]
 ```
 Nota: En caso de no asignar el puerto en las variables de entorno, se asignará el puerto por defecto.
 
