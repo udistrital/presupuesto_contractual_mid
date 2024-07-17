@@ -17,14 +17,27 @@ export class CdpService {
     vigencia: string,
     numeroDisponibilidad: string,
     unidadEjecutora: string,
-  ) {
-    const endpoint: string = this.configService.get<string>(
-      'ENDP_INFO_CDP_FINANCIERA',
-    );
-    const url = `${endpoint}/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
+  ): Promise<StandardResponse<any>> {
+    try {
+      const endpoint: string = this.configService.get<string>(
+        'ENDP_INFO_CDP_FINANCIERA',
+      );
+      const url = `${endpoint}/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
 
-    const responseRaw = await axios.get(url);
-    const response: responseData = responseRaw.data;
-    return response.informacion_cdp.cdp;
+      const responseRaw = await axios.get(url);
+      const response: responseData = responseRaw.data;
+      return {
+          success: true,
+          status: 200,
+          message: 'CDP',
+          data: response.informacion_cdp.cdp,
+      }
+    } catch (error) {
+        return {
+          success: false,
+          status: error.response?.status || 500,
+          message: error.message || 'Error al consultar el CDP',
+        };
+    }
   }
 }
