@@ -27,16 +27,16 @@ export class CdpService {
       const responseRaw = await axios.get(url);
       const response: responseData = responseRaw.data;
       return {
-          success: true,
-          status: 200,
-          message: 'CDP',
-          data: response.informacion_cdp.cdp,
+          Success: true,
+          Status: 200,
+          Message: 'CDP',
+          Data: response.informacion_cdp.cdp,
       }
     } catch (error) {
         return {
-          success: false,
-          status: error.response?.status || 500,
-          message: error.message || 'Error al consultar el CDP',
+          Success: false,
+          Status: error.response?.status || 500,
+          Message: error.message || 'Error al consultar el CDP',
         };
     }
   }

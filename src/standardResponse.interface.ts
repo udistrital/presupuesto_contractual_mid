@@ -1,6 +1,6 @@
 interface StandardResponse<T> {
-    success: boolean;
-    status: number;
-    message: string;
-    data?: T;
+    Success: boolean;
+    Status: number;
+    Message: string;
+    Data?: T;
 }
