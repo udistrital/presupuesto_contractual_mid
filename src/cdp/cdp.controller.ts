@@ -30,8 +30,8 @@ export class CdpController {
     required: true,
     example: '01',
   })
-  findOne(@Query(ValidationPipe) query: ParametrosDto) {
-    return this.cdpService.findOne(
+  obtenerCDP(@Query(ValidationPipe) query: ParametrosDto) {
+    return this.cdpService.obtenerCDP(
       query.vigencia,
       query.numeroDisponibilidad,
       query.unidadEjecutora,
