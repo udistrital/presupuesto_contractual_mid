@@ -1,5 +1,5 @@
-import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
-import axios, {AxiosError} from 'axios';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { CdpDto } from './dto/cdp.dto';
 import { ConfigService } from '@nestjs/config';
 
@@ -13,7 +13,7 @@ interface responseData {
 export class CdpService {
   constructor(private configService: ConfigService) {}
 
-  async findOne(
+  async obtenerCDP(
     vigencia: string,
     numeroDisponibilidad: string,
     unidadEjecutora: string,
@@ -23,29 +23,31 @@ export class CdpService {
         'ENDP_INFO_CDP_FINANCIERA',
       );
       const url = `${endpoint}/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
-      const {data} = await axios.get<responseData>(url);
+      const { data } = await axios.get<responseData>(url);
 
-      if(data.informacion_cdp == undefined || data.informacion_cdp.cdp == undefined) {
+      if (
+        data.informacion_cdp == undefined ||
+        data.informacion_cdp.cdp == undefined
+      ) {
         return {
-            Success: false,
-            Status: HttpStatus.NOT_FOUND,
-            Message: 'CDP no encontrado',
-        }
+          Success: false,
+          Status: HttpStatus.NOT_FOUND,
+          Message: 'CDP no encontrado',
+        };
       }
 
       return {
-          Success: true,
-          Status: HttpStatus.OK,
-          Message: 'CDP Encontrado',
-          Data: data.informacion_cdp.cdp,
-      }
-
+        Success: true,
+        Status: HttpStatus.OK,
+        Message: 'CDP Encontrado',
+        Data: data.informacion_cdp.cdp,
+      };
     } catch (error) {
-        return {
-          Success: false,
-          Status: error.response?.status || 500,
-          Message: error.message || 'Error al consultar el CDP',
-        };
+      return {
+        Success: false,
+        Status: error.response?.status || 500,
+        Message: error.message || 'Error al consultar el CDP',
+      };
     }
   }
 }
