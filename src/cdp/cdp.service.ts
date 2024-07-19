@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
+import axios, {AxiosError} from 'axios';
 import { CdpDto } from './dto/cdp.dto';
 import { ConfigService } from '@nestjs/config';
 
@@ -23,15 +23,23 @@ export class CdpService {
         'ENDP_INFO_CDP_FINANCIERA',
       );
       const url = `${endpoint}/${vigencia}/${numeroDisponibilidad}/${unidadEjecutora}`;
+      const {data} = await axios.get<responseData>(url);
 
-      const responseRaw = await axios.get(url);
-      const response: responseData = responseRaw.data;
+      if(data.informacion_cdp == undefined || data.informacion_cdp.cdp == undefined) {
+        return {
+            Success: false,
+            Status: HttpStatus.NOT_FOUND,
+            Message: 'CDP no encontrado',
+        }
+      }
+
       return {
           Success: true,
-          Status: 200,
-          Message: 'CDP',
-          Data: response.informacion_cdp.cdp,
+          Status: HttpStatus.OK,
+          Message: 'CDP Encontrado',
+          Data: data.informacion_cdp.cdp,
       }
+
     } catch (error) {
         return {
           Success: false,
