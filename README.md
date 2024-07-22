@@ -38,16 +38,6 @@ Nota: Para otras plataformas de PNPM consultar la [documentación oficial](https
 http://localhost:3000/api
 ```
 
-### Tests
-```shell
-# Test
-pnpm test
-
-# Se ejecutará jest, validando los casos de prueba en los archivos .spec.ts
-
-```
-
-
 ### Ejecución Dockerfile
 ```shell
 # TODO
@@ -62,12 +52,18 @@ pnpm test
 
 Pruebas unitarias
 ```shell
-# En Proceso
+# Test
+pnpm test
+
+# Se ejecutará jest, validando los casos de prueba en los archivos .spec.ts
+
 ```
 
 ## Estado CI
 
+```shell
 EN PROCESO
+```
 
 ## Licencia
 
