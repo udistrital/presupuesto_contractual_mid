@@ -129,7 +129,7 @@ describe('CdpService', () => {
         data: { cdps_vigencia: { cdp: mockCdps } },
       });
 
-      const result = await service.listaCDP('2023', '01');
+      const result = await service.consultaInfoCDP('2023', '01');
 
       expect(result).toEqual({
         Success: true,
@@ -143,7 +143,7 @@ describe('CdpService', () => {
     it('should return a 404 when no CDPs are found', async () => {
       mockedAxios.get.mockResolvedValue({ data: {} });
 
-      const result = await service.listaCDP('2023', '01');
+      const result = await service.consultaInfoCDP('2023', '01');
 
       expect(result).toEqual({
         Success: false,
@@ -155,7 +155,7 @@ describe('CdpService', () => {
     it('should handle errors', async () => {
       mockedAxios.get.mockRejectedValue(new Error('Network error'));
 
-      const result = await service.listaCDP('2023', '01');
+      const result = await service.consultaInfoCDP('2023', '01');
 
       expect(result).toEqual({
         Success: false,
