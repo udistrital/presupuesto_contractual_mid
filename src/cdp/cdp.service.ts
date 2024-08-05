@@ -57,7 +57,7 @@ export class CdpService {
     }
   }
 
-  async listaCDP(
+  async consultaInfoCDP(
     vigencia: string,
     unidadEjecutora: string,
   ): Promise<StandardResponse<any>> {

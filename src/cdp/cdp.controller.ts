@@ -15,7 +15,10 @@ export class CdpController {
   constructor(private readonly cdpService: CdpService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Consulta CDP' })
+  @ApiOperation({
+    summary:
+      'Consulta Información de CDP filtrando por vigencia, número de disponibilidad y unidad ejecutora',
+  })
   @ApiResponse({ status: 200, description: 'Retorna un CDP.' })
   @ApiResponse({ status: 400, description: 'Error en la solicitud.' })
   @ApiQuery({
@@ -36,7 +39,7 @@ export class CdpController {
     required: true,
     example: '01',
   })
-  async obtenerCDP(@Query(ValidationPipe) query: ParametrosDetalleDto) {
+  async consultaInfoCDP(@Query(ValidationPipe) query: ParametrosDetalleDto) {
     const result = await this.cdpService.obtenerCDP(
       query.vigencia,
       query.numeroDisponibilidad,
@@ -58,7 +61,10 @@ export class CdpController {
   }
 
   @Get('lista')
-  @ApiOperation({ summary: 'Lista CDP' })
+  @ApiOperation({
+    summary:
+      'Lista Información de Disponibilidad por vigencia y unidad ejecutora',
+  })
   @ApiResponse({ status: 200, description: 'Retorna una lista de CDP.' })
   @ApiResponse({ status: 400, description: 'Error en la solicitud.' })
   @ApiQuery({
@@ -73,8 +79,8 @@ export class CdpController {
     required: true,
     example: '01',
   })
-  async listaCDP(@Query(ValidationPipe) query: ParametrosListaDto) {
-    const result = await this.cdpService.listaCDP(
+  async listaNumeroDisponibilidad(@Query(ValidationPipe) query: ParametrosListaDto) {
+    const result = await this.cdpService.consultaInfoCDP(
       query.vigencia,
       query.unidadEjecutora,
     );
