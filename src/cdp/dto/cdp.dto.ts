@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CdpDto {
+export class CdpDetalleDto {
   @ApiProperty()
   vigencia: string;
 
@@ -39,4 +39,27 @@ export class CdpDto {
 
   @ApiProperty()
   estadocdp: string;
+}
+
+export class CdpListaDto {
+  @ApiProperty()
+  vigencia: string;
+
+  @ApiProperty()
+  numero_necesidad: string;
+
+  @ApiProperty()
+  estado_nececidad: string;
+
+  @ApiProperty()
+  numero_disponibilidad: string;
+
+  @ApiProperty()
+  estadpcdp: string;
+
+  @ApiProperty()
+  nombre_dependencia: string;
+
+  @ApiProperty()
+  id_nececidad: string;
 }
