@@ -39,7 +39,7 @@ paths:
           description: Error en la solicitud.
       tags: &ref_0
         - cdp
-  /cdps/lista:
+  /cdps/numerosdisponibilidad:
     get:
       operationId: CdpController_listaNumeroDisponibilidad
       summary: Lista Información de Disponibilidad por vigencia y unidad ejecutora
