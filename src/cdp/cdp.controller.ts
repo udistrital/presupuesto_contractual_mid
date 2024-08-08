@@ -10,7 +10,7 @@ import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ParametrosDetalleDto, ParametrosListaDto } from './dto/parametros.dto';
 
 @ApiTags('cdp')
-@Controller('cdp')
+@Controller('cdps')
 export class CdpController {
   constructor(private readonly cdpService: CdpService) {}
 
@@ -60,7 +60,7 @@ export class CdpController {
     return result;
   }
 
-  @Get('lista')
+  @Get('numerosdisponibilidad')
   @ApiOperation({
     summary:
       'Lista Información de Disponibilidad por vigencia y unidad ejecutora',
@@ -79,7 +79,9 @@ export class CdpController {
     required: true,
     example: '01',
   })
-  async listaNumeroDisponibilidad(@Query(ValidationPipe) query: ParametrosListaDto) {
+  async listaNumeroDisponibilidad(
+    @Query(ValidationPipe) query: ParametrosListaDto,
+  ) {
     const result = await this.cdpService.consultaInfoCDP(
       query.vigencia,
       query.unidadEjecutora,

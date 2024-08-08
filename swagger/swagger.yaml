@@ -1,0 +1,75 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_healthCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /cdps:
+    get:
+      operationId: CdpController_consultaInfoCDP
+      summary: >-
+        Consulta Información de CDP filtrando por vigencia, número de
+        disponibilidad y unidad ejecutora
+      parameters:
+        - name: unidadEjecutora
+          required: true
+          in: query
+          example: '01'
+          schema:
+            type: string
+        - name: numeroDisponibilidad
+          required: true
+          in: query
+          example: '2314'
+          schema:
+            type: string
+        - name: vigencia
+          required: true
+          in: query
+          example: '2024'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retorna un CDP.
+        '400':
+          description: Error en la solicitud.
+      tags: &ref_0
+        - cdp
+  /cdps/numerosdisponibilidad:
+    get:
+      operationId: CdpController_listaNumeroDisponibilidad
+      summary: Lista Información de Disponibilidad por vigencia y unidad ejecutora
+      parameters:
+        - name: unidadEjecutora
+          required: true
+          in: query
+          example: '01'
+          schema:
+            type: string
+        - name: vigencia
+          required: true
+          in: query
+          example: '2024'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retorna una lista de CDP.
+        '400':
+          description: Error en la solicitud.
+      tags: *ref_0
+info:
+  title: Presupuesto Contractual API MID
+  description: API
+  version: '1.0'
+  contact: {}
+tags:
+  - name: API
+    description: ''
+servers: []
+components:
+  schemas: {}
