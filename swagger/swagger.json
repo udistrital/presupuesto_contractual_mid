@@ -58,7 +58,7 @@
         ]
       }
     },
-    "/cdps/numerosdisponibilidad": {
+    "/cdps/numeros-disponibilidad": {
       "get": {
         "operationId": "CdpController_listaNumeroDisponibilidad",
         "summary": "Lista Información de Disponibilidad por vigencia y unidad ejecutora",
