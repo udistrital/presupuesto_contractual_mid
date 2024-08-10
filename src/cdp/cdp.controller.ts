@@ -60,7 +60,7 @@ export class CdpController {
     return result;
   }
 
-  @Get('numerosdisponibilidad')
+  @Get('numeros-disponibilidad')
   @ApiOperation({
     summary:
       'Lista Información de Disponibilidad por vigencia y unidad ejecutora',
